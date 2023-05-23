@@ -34,6 +34,9 @@ let blogPosts = [
   }
 ];
 
+// In-memory array to store registered users
+let registeredUsers = [];
+
 app.post('/api/posts', (req, res) => {
   // Retrieve the blog post data from the request body
   const { title, content, author } = req.body;
@@ -56,6 +59,51 @@ app.post('/api/posts', (req, res) => {
 app.get('/api/posts', (req, res) => {
   // Send the blog posts as a JSON response
   res.json(blogPosts);
+});
+
+app.post('/api/login', (req, res) => {
+  // Retrieve the username and password from the request body
+  const { username, password } = req.body;
+
+  // Check if the username and password match a registered user
+  const user = registeredUsers.find((user) => user.username === username && user.password === password);
+
+  if (user) {
+    // Authentication successful
+    res.status(200).json({ message: 'Login successful' });
+  } else {
+    // Authentication failed
+    res.status(401).json({ message: 'Invalid username or password' });
+  }
+});
+
+app.post('/api/register', (req, res) => {
+  // Retrieve the username and password from the request body
+  const { username, password } = req.body;
+
+  // Check if the username already exists in the registered users array
+  const userExists = registeredUsers.some((user) => user.username === username);
+
+  if (userExists) {
+    return res.status(400).json({ message: 'Username already exists' });
+  }
+
+  // Create a new user object
+  const newUser = {
+    username,
+    password
+  };
+
+  // Store the new user in the registeredUsers array
+  registeredUsers.push(newUser);
+
+  // Send a response indicating success
+  res.status(201).json({ message: 'User registered successfully' });
+});
+
+app.get('/api/register', (req, res) => {
+    // Send the blog posts as a JSON response
+    res.json(registeredUsers);
 });
 
 app.listen(5000);
