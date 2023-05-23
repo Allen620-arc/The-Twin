@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Blog</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>My Blog</h1>
+    <nav>
+      <ul>
+        <li class="active"><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="post.html">Posts</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Welcome to My Blog</h2>
+      <p>Discover insightful articles, personal stories, and helpful tips on various topics.</p>
+    </section>
+    <section>
+      <h2>Latest Posts</h2>
+      <div id="blogPostsContainer">
+        <form id="postForm">
+          <div>
+            <label for="title">Title:</label>
+            <input type="text" name="title" placeholder="Title" required />
+          </div>
+          <div>
+            <label for="name">Post:</label>
+            <textarea name="content" placeholder="Content" required></textarea>
+          </div>
+          <div>
+            <label for="author">Author:</label>
+            <input type="text" name="author" placeholder="Author" required />
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 My Blog. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
